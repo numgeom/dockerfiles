@@ -1,0 +1,7 @@
+# Jupyter Notebook for Mesh Generation with Python 3.
+
+Welcome to Jupyter Notebook for Mesh Generation with Python 3!
+
+This image bundles a number of mesh generation tools for the use
+with FENniCS. It also includes a full-featured and optimized build 
+of the stable version of FEniCS (master branch).
