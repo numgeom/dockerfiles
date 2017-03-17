@@ -2,7 +2,7 @@
 # the user numgeom, set up the users environment and the default 
 # entry point and cmds.
 #
-# This image can be found at:
+# Although this image is not for end users, it can be found at:
 #
 #   https://hub.docker.com/repository/numgeom/base
 #
