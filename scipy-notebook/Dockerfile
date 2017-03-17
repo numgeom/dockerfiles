@@ -14,7 +14,7 @@ MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get -y python3-scipy python3-sympy python3-pandas && \
+    apt-get install -y python3-scipy python3-sympy python3-pandas && \
     rm -rf /var/lib/apt/lists/*
 
 # Clean Up
