@@ -14,7 +14,7 @@ MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y octave octave-dev octave-symbolic octave-odepkg gnuplot && \
+    apt-get install -y octave liboctave-dev octave-symbolic octave-odepkg gnuplot && \
     rm -rf /var/lib/apt/lists/*
 
 # Install latex_envs for Jupyter Notebook
