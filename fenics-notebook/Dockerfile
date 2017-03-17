@@ -9,9 +9,6 @@
 FROM numgeom/fenics-stable
 MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-USER root 
-
-# Install python3 and update pip
 USER root
 
 # Install latex_envs for Jupyter Notebook
@@ -29,6 +26,7 @@ RUN jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/cali
 RUN rm -rf /tmp/* /var/tmp/*
 
 # Print something nice on entry.
+USER numgeom
 ENV NUMGEOM_HOME /home/numgeom
 COPY WELCOME $NUMGEOM_HOME/WELCOME
 

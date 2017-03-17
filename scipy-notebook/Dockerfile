@@ -20,6 +20,10 @@ RUN apt-get update && \
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
 
+USER numgeom
+
 # Print something nice on entry.
 ENV NUMGEOM_HOME /home/numgeom
 COPY WELCOME $NUMGEOM_HOME/WELCOME
+
+USER root

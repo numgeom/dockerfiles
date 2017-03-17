@@ -14,7 +14,7 @@ MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y octave octave-symbolic gnuplot && \
+    apt-get install -y octave octave-dev octave-symbolic octave-odepkg gnuplot && \
     rm -rf /var/lib/apt/lists/*
 
 # Install latex_envs for Jupyter Notebook
@@ -24,6 +24,10 @@ RUN pip3 install -U octave_kernel && \
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
 
+USER numgeom
+
 # Print something nice on entry.
 ENV NUMGEOM_HOME /home/numgeom
 COPY WELCOME $NUMGEOM_HOME/WELCOME
+
+USER root
