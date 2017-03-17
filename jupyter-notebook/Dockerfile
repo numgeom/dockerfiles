@@ -1,4 +1,4 @@
-# Builds a Docker image for Jupyter Notebook with python3 for NumGeom,
+# Builds a Docker image for Jupyter Notebook with python3,
 # with LaTeX environment and spell checker enabled.
 #
 # It can be found at:
