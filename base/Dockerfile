@@ -38,14 +38,14 @@ RUN apt-get -y install \
 
 # Install latex_envs for Jupyter Notebook
 RUN pip3 install -U jupyter_latex_envs && \
-    jupyter nbextension install --py latex_envs && \
-    jupyter nbextension enable --py latex_envs
+    jupyter nbextension install --system --py latex_envs && \
+    jupyter nbextension enable --system --py latex_envs
 
 # Install spell checker for Jupyter Notebook
-RUN jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-spell-check-1.0.zip && \
-    jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-document-tools-1.0.zip && \
-    jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-cell-tools-1.0.zip && \
-    jupyter nbextension enable calico-spell-check && \
+RUN jupyter nbextension install --system https://bitbucket.org/ipre/calico/downloads/calico-spell-check-1.0.zip && \
+    jupyter nbextension install --system https://bitbucket.org/ipre/calico/downloads/calico-document-tools-1.0.zip && \
+    jupyter nbextension install --system https://bitbucket.org/ipre/calico/downloads/calico-cell-tools-1.0.zip && \
+    jupyter nbextension enable --system calico-spell-check && \
     rm -rf /tmp/* /var/tmp/*
 
 ENV NGUSER=numgeom
