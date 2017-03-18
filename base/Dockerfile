@@ -22,13 +22,31 @@ RUN apt-get update && \
             locales \
             sudo && \
     echo "C.UTF-8 UTF-8" > /etc/locale.gen && \
-    locale-gen && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    locale-gen
 
 # Set locale environment
 ENV LC_ALL=C.UTF-8 \
     LANG=C.UTF-8 \
     LANGUAGE=C.UTF-8
+
+# Install python3 and update pip
+RUN apt-get -y install \
+            python3 \
+            python3-pip && \
+    pip3 install -U pip && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Install latex_envs for Jupyter Notebook
+RUN pip3 install -U jupyter_latex_envs && \
+    jupyter nbextension install --py latex_envs && \
+    jupyter nbextension enable --py latex_envs
+
+# Install spell checker for Jupyter Notebook
+RUN jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-spell-check-1.0.zip && \
+    jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-document-tools-1.0.zip && \
+    jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-cell-tools-1.0.zip && \
+    jupyter nbextension enable calico-spell-check && \
+    rm -rf /tmp/* /var/tmp/*
 
 ENV NGUSER=numgeom
 ENV NGHOME=/home/$NGUSER
@@ -59,5 +77,5 @@ COPY WELCOME $NGHOME/WELCOME
 
 WORKDIR $NGHOME
 USER root
-ENTRYPOINT ["/sbin/my_init","--quiet","--","/sbin/setuser","$NGUSER","/bin/bash","-l","-c"]
+ENTRYPOINT ["/sbin/my_init","--quiet","--","/sbin/setuser","numgeom","/bin/bash","-l","-c"]
 CMD ["/bin/bash","-i"]
