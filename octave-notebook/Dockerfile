@@ -9,11 +9,11 @@
 FROM numgeom/base
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
-# Install octave
+# Install octave (liboctave-dev is not installed to save space.)
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y octave liboctave-dev gnuplot && \
+    apt-get install -y octave gnuplot && \
     rm -rf /var/lib/apt/lists/*
 
 # Install latex_envs for Jupyter Notebook
