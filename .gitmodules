@@ -1,3 +1,0 @@
-[submodule "fenics_dockerfiles"]
-	path = fenics_dockerfiles
-	url = https://bitbucket.org/numgeom/fenics_dockerfiles.git
