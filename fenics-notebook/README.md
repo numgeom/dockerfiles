@@ -17,7 +17,7 @@ Once you have Docker installed, you can start Jupyter Notebook using the followi
     'jupyter-notebook --no-browser --ip=0.0.0.0 --port 8088'
 ```
 
-Your version os Windows does not support Docker, you may need to [install Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/) instead. After you have installed Docker Toolbox, start it and run the following command in a Docker Toolbox terminal in the directory where you will store the Notebooks:
+If your version of Windows does not support Docker, you may need to [install Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/) instead. After you have installed Docker Toolbox, start it and run the following command in a Docker Toolbox terminal in a work directory where you will start the Notebooks:
 ```
      docker run --rm -w /home/numgeom/shared -v $(pwd):/home/numgeom/shared -d -p \
     $(docker-machine ip $(docker-machine active)):8088:8088 numgeom/fenics-notebook \
@@ -25,14 +25,16 @@ Your version os Windows does not support Docker, you may need to [install Docker
 ```
 
 If successful, you will see some screen out such as:
+"
 ```
-    ...
-    Copy/paste this URL into your browser when you connect for the first time,
-    to login with a token:
-        http://0.0.0.0:8088/?token=2634a8f67ed91c582929e1a1137b8b3b400385b35afab19e
+...
+Copy/paste this URL into your browser when you connect for the first time,
+to login with a token:
+http://0.0.0.0:8088/?token=2634a8f67ed91c582929e1a1137b8b3b400385b35afab19e
 ```
+"
 
-Copy and paste the command into a web browser (such as Google Chrome). 
+Copy and paste the URL into a web browser (such as Google Chrome). If port `8088` is being used, you can change it to a different port (say `8099`) by replacing `8088` with `8099 in the` `docker run` command.
 
 When you are finished with using Jupyter Notebook, use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 
