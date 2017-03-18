@@ -1,9 +1,6 @@
-# Jupyter Notebook for SciPy with latex_envs and spell cheker.
+# SciPy with Jupyter Notebook.
 
-Welcome to Jupyter Notebook for Python 3 and SciPy!
-
-This image provides Jupyter Notebook for the SciPy software stack, including
-NumPy, SymPy, Pandas. It also has LaTeX environment and spell cheker.
+Welcome to SciPy with Jupyter Notebook!
 
 To use Jupyter Notebook, see the instruction at
 https://hub.docker.com/r/numgeom/scipy-notebook/

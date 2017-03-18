@@ -1,5 +1,5 @@
-# Builds a Docker image for Jupyter Notebook with Python 3 and SciPy. 
-# It also installs addiional packages, including sympy, pandsa, etc.
+# Builds a Docker image for SciPy with Jupyter Notebook. 
+# It installs addiional packages, including sympy, pandsa, etc.
 #
 # It can be found at:
 #   https://hub.docker.com/repository/numgeom/scipy-notebook
@@ -7,7 +7,7 @@
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM numgeom/jupyter-notebook
+FROM numgeom/base
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 # Install scipy

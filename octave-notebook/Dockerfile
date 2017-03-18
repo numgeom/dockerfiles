@@ -1,4 +1,4 @@
-# Builds a Docker image for Jupyter Notebook with Octave.
+# Builds a Docker image for Octave with Jupyter Notebook.
 #
 # It can be found at:
 #   https://hub.docker.com/repository/numgeom/octave-notebook

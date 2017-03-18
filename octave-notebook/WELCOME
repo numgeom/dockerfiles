@@ -1,6 +1,6 @@
-# Jupyter Notebook for Octave with latex_envs and spell cheker.
+# Octave with Jupyter Notebook.
 
-Welcome to Jupyter Notebook for Octave!
+Welcome to Octave with Jupyter Notebook!
 
 To use Jupyter Notebook, see the instruction at
 https://hub.docker.com/r/numgeom/octave-notebook/
