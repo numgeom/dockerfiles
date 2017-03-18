@@ -4,3 +4,6 @@ Welcome to Jupyter Notebook for Python 3!
 
 This image provides Jupyter Notebook for Python 3, with latex_envs 
 and spell cheker enabled.
+
+To use Jupyter Notebook, see the instruction at
+https://hub.docker.com/r/numgeom/jupyter-notebook/
