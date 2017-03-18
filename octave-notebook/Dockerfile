@@ -8,13 +8,13 @@
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
 FROM numgeom/jupyter-notebook
-MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
+LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 # Install octave
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y octave liboctave-dev octave-symbolic octave-odepkg gnuplot && \
+    apt-get install -y octave liboctave-dev gnuplot && \
     rm -rf /var/lib/apt/lists/*
 
 # Install latex_envs for Jupyter Notebook
@@ -24,10 +24,9 @@ RUN pip3 install -U octave_kernel && \
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
 
-USER numgeom
+USER $NGUSER
 
 # Print something nice on entry.
-ENV NUMGEOM_HOME /home/numgeom
-COPY WELCOME $NUMGEOM_HOME/WELCOME
+COPY WELCOME $NGHOME/WELCOME
 
 USER root

@@ -8,7 +8,7 @@
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
 FROM numgeom/jupyter-notebook
-MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
+LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 # Install scipy
 USER root
@@ -20,10 +20,9 @@ RUN apt-get update && \
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
 
-USER numgeom
+USER $NGUSER
 
 # Print something nice on entry.
-ENV NUMGEOM_HOME /home/numgeom
-COPY WELCOME $NUMGEOM_HOME/WELCOME
+COPY WELCOME $NGHOME/WELCOME
 
 USER root

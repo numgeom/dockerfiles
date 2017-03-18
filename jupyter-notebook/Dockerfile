@@ -8,7 +8,7 @@
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
 FROM numgeom/base
-MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
+LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 # Install python3 and update pip
 USER root
@@ -34,10 +34,9 @@ RUN jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/cali
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
 
-USER numgeom
+USER $NGUSER
 
 # Print something nice on entry.
-ENV NUMGEOM_HOME /home/numgeom
-COPY WELCOME $NUMGEOM_HOME/WELCOME
+COPY WELCOME $NGHOME/WELCOME
 
 USER root
