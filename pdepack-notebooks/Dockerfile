@@ -6,14 +6,24 @@
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM numgeom/fenics-notebook
+FROM numgeom/fenics-stable
 MAINTAINER Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-# Install python3 and update pip
 USER root
 
+# Install latex_envs for Jupyter Notebook
+RUN pip install -U jupyter_latex_envs && \
+    jupyter nbextension install --py latex_envs && \
+    jupyter nbextension enable --py latex_envs
+
+# Install spell checker for Jupyter Notebook
+RUN jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-spell-check-1.0.zip && \
+    jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-document-tools-1.0.zip && \
+    jupyter nbextension install https://bitbucket.org/ipre/calico/downloads/calico-cell-tools-1.0.zip && \
+    jupyter nbextension enable calico-spell-check
+
 # Install pygmsh and meshpy
-RUN pip3 install -U \
+RUN pip install -U \
          pygmsh \
          meshpy
 
@@ -22,7 +32,7 @@ RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
     apt-get install -y libcgal-dev libeigen3-dev && \
     rm -rf /var/lib/apt/lists/* && \
-    pip3 install -U frentos
+    pip install -U frentos
 
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
