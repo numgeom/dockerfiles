@@ -40,12 +40,12 @@ When you have finished using Jupyter Notebook, use Control-C to stop this server
 
 You can also run the image as a Linux environment for FEniCS. You can run the image using the following command:
 
-    docker run -rm -ti -w/home/numgeom/shared -v $(pwd):/home/numgeom/shared \
+    docker run --rm -ti -w/home/numgeom/shared -v $(pwd):/home/numgeom/shared \
     numgeom/pdepack-notebook:latest
 
 which would share your current working directory into the container as `~/shared`. *Note that you should only save files under the shared directory because all other files will be lost when the process ends.*
 
 Users with SELinux-enabled Linux distributions (Redhat, Fedora, CentOS, and others) will need to add the `:z` flag to the volume mount, e.g.:
 
-    docker run -rm -ti -w/home/numgeom/shared -v $(pwd):/home/numgeom/shared:z \
+    docker run --rm -ti -w/home/numgeom/shared -v $(pwd):/home/numgeom/shared:z \
     numgeom/pdepack-notebook:latest
