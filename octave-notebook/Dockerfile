@@ -1,5 +1,4 @@
-# Builds a Docker image for Jupyter Notebook with Octave. It also
-# installs some additional packages, including symbolic.
+# Builds a Docker image for Jupyter Notebook with Octave.
 #
 # It can be found at:
 #   https://hub.docker.com/repository/numgeom/octave-notebook
@@ -7,7 +6,7 @@
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM numgeom/jupyter-notebook
+FROM numgeom/base
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 # Install octave

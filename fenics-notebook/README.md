@@ -8,7 +8,7 @@ This images inherits [fenics/stable](https://hub.docker.com/r/fenics/stable), wh
 
 ## Running Jupyter Notebook
 
-To install Docker for your platform (Windows, macOS, Linux, cloud platforms, etc.), follow the instructions at [docker.com](https://docs.docker.com/engine/getstarted/step_one/).
+To install Docker for your platform (Windows, MacOS, Linux, cloud platforms, etc.), follow the instructions at [docker.com](https://docs.docker.com/engine/getstarted/step_one/).
 
 Once you have Docker installed, you can start Jupyter Notebook using the following command in the directory where you will store the Notebooks:
 ```
@@ -36,7 +36,7 @@ http://0.0.0.0:8088/?token=2634a8f67ed91c582929e1a1137b8b3b400385b35afab19e
 
 Copy and paste the URL into a web browser (such as Google Chrome). If port `8088` is being used, you can change it to a different port (say `8099`) by replacing `8088` with `8099 in the` `docker run` command.
 
-When you are finished with using Jupyter Notebook, use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+When you have finished using Jupyter Notebook, use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 
 ## Running as Linux environment
 

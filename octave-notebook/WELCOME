@@ -2,8 +2,5 @@
 
 Welcome to Jupyter Notebook for Octave!
 
-This image provides Jupyter Notebook for Octave with the symbolic 
-package enabled. It also has LaTeX environment and spell cheker.
-
 To use Jupyter Notebook, see the instruction at
 https://hub.docker.com/r/numgeom/octave-notebook/
