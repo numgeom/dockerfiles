@@ -1,0 +1,10 @@
+# FEniCS stable version image with Jupyter Notebook.
+
+Welcome to FEniCS/jupyter with Jupyter Notebook!
+
+This image provides a full-featured and optimized build of the stable
+release of FEniCS with Jupyter Notebook, including LaTeX environment and
+spell checker.
+
+To use Jupyter Notebook, see the instruction at
+https://hub.docker.com/r/numgoem/fenics-notebook/
