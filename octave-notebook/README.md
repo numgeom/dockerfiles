@@ -1,8 +1,8 @@
-## Docker Image for Octave with ODE package and Jupyter Notebook.
+## Docker Image for Octave with Jupyter Notebook.
 
-This Docker image is for Octave with ODE package and Jupyter Notebook. This images inherits [numgeom/octave-notebook](https://hub.docker.com/r/numgeom/octave-notebook). 
+This Docker image is for Octave 4.0 with Jupyter Notebook. This images inherits [numgeom/base](https://hub.docker.com/r/numgeom/base). 
 
-![Docker Repository on Quay](https://quay.io/repository/numgeom/odepack-notebook/status "Docker Repository on Quay")
+![Docker Repository on Quay](https://quay.io/repository/numgeom/octave-notebook/status "Docker Repository on Quay")
 
 ## Running Jupyter Notebook
 
@@ -11,14 +11,14 @@ To install Docker for your platform (Windows, MacOS, Linux, cloud platforms, etc
 Once you have Docker installed, you can start Jupyter Notebook using the following command in the directory where you want to store your notebooks:
 ```
     docker run --rm -w /home/numgeom/shared -v $(pwd):/home/numgeom/shared \
-    -p 127.0.0.1:8088:8088 numgeom/odepack-notebook \
+    -p 127.0.0.1:8088:8088 numgeom/octave-notebook \
     'jupyter-notebook --no-browser --ip=0.0.0.0 --port 8088'
 ```
 
 If your version of Windows does not support Docker, you may need to [install Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/) instead. After you have installed Docker Toolbox, start it and run the following command in a Docker Toolbox terminal in your work directory:
 ```
      docker run --rm -w /home/numgeom/shared -v $(pwd):/home/numgeom/shared -d -p \
-    $(docker-machine ip $(docker-machine active)):8088:8088 numgeom/odepack-notebook \
+    $(docker-machine ip $(docker-machine active)):8088:8088 numgeom/octave-notebook \
     'jupyter-notebook --no-browser --ip=0.0.0.0 --port=8088'
 ```
 
@@ -41,11 +41,11 @@ When you have finished using Jupyter Notebook, use Control-C to stop this server
 You can also run the image as a Linux environment for Octave. You can run the image using the following command:
 
     docker run -rm -ti -w/home/numgeom/shared -v $(pwd):/home/numgeom/shared \
-    numgeom/odepack-notebook:latest
+    numgeom/octave-notebook:latest
 
 which would share your current working directory into the container as `~/shared`. *Note that you should only save files under the shared directory because all other files will be lost when the process ends.*
 
 Users with SELinux-enabled Linux distributions (Redhat, Fedora, CentOS, and others) will need to add the `:z` flag to the volume mount, e.g.:
 
     docker run -rm -ti -w/home/numgeom/shared -v $(pwd):/home/numgeom/shared:z \
-    numgeom/odepack-notebook:latest
+    numgeom/octave-notebook:latest
