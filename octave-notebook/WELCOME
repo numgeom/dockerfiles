@@ -3,4 +3,4 @@
 Welcome to Octave with Jupyter Notebook!
 
 To use Jupyter Notebook, see the instruction at
-https://hub.docker.com/r/numgeom/octave-notebook/
+https://github.com/numgeom/dockerfiles/blob/master/octave-notebook/README.md

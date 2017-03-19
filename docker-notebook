@@ -63,7 +63,7 @@ if __name__ == "__main__":
                          "-w", "/home/" + user + "/shared", 
                          "-v", pwd + ":/home/" + user + "/shared", 
                          "-p", port + ":" + port, 
-                         user + "/" + prefix + "-notebook", 
+                         "quay.io/" user +"/" + prefix + "-notebook", 
                          "jupyter-notebook --no-browser --ip=0.0.0.0 --port " + port], 
                         stderr=subprocess.PIPE, universal_newlines=True)
    

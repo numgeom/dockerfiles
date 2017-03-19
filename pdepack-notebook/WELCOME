@@ -3,4 +3,4 @@
 Welcome to Docker Image pdePack with FEniCS and Jupyter Notebook!
 
 To use Jupyter Notebook, see the instruction at
-https://hub.docker.com/r/numgeom/pdepack-notebook/
+https://github.com/numgeom/dockerfiles/blob/master/odepack-notebook/README.md

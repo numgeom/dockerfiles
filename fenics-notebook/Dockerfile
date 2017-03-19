@@ -2,12 +2,12 @@
 # with LaTeX environment and spell checker.
 #
 # It can be found at:
-#   https://hub.docker.com/repository/numgeom/fenisc-notebook
+#   https://quay.io/repository/numgeom/fenics-notebook
 #
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM fenics/stable:latest
+FROM quay.io/fenics/stable:latest
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root

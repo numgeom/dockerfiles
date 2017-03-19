@@ -3,4 +3,4 @@
 Welcome to Octave with ODE package and Jupyter Notebook!
 
 To use Jupyter Notebook, see the instruction at
-https://hub.docker.com/r/numgeom/odepack-notebook/
+https://github.com/numgeom/dockerfiles/blob/master/odepack-notebook/README.md

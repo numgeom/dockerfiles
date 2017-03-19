@@ -2,12 +2,12 @@
 # It installs addiional packages, including sympy, pandsa, etc.
 #
 # It can be found at:
-#   https://hub.docker.com/repository/numgeom/scipy-notebook
+#   https://quay.io/repository/numgeom/scipy-notebook
 #
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM numgeom/base
+FROM quay.io/numgeom/base
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 # Install scipy

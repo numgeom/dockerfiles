@@ -6,7 +6,7 @@
 # Although this image is not used directly by end-users, it can be
 # found at:
 #
-#   https://hub.docker.com/repository/numgeom/base
+#   https://quay.io/organization/numgeom/base
 #
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>

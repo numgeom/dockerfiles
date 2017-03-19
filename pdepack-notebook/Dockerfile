@@ -1,12 +1,12 @@
 # Builds a Docker image for mesh generation with Jupyter Notebook.
 #
 # It can be found at:
-#   https://hub.docker.com/repository/numgeom/meshpack-notebook
+#   https://quay.io/repository/numgeom/meshpack-notebook
 #
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM numgeom/fenics-notebook
+FROM quay.io/numgeom/fenics-notebook
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root

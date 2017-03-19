@@ -7,4 +7,4 @@ release of FEniCS with Jupyter Notebook, including LaTeX environment and
 spell checker.
 
 To use Jupyter Notebook, see the instruction at
-https://hub.docker.com/r/numgoem/fenics-notebook/
+https://github.com/numgeom/dockerfiles/blob/master/fenics-notebook/README.md
