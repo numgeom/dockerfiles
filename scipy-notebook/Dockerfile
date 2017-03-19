@@ -1,5 +1,4 @@
 # Builds a Docker image for SciPy with Jupyter Notebook. 
-# It installs addiional packages, including sympy, pandsa, etc.
 #
 # It can be found at:
 #   https://quay.io/repository/numgeom/scipy-notebook
@@ -14,7 +13,7 @@ LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y python3-scipy python3-sympy python3-pandas && \
+    apt-get install -y python3-scipy python3-sympy && \
     rm -rf /var/lib/apt/lists/*
 
 # Clean Up
