@@ -11,13 +11,17 @@ import argparse
 
 # Process input arguments
 parser = argparse.ArgumentParser(description=__doc__)
-parser.add_argument('prefix', nargs='?', help='''one of scipy, octave, odepack, fenics, or pdepack. It will launch the Docker image of prefix-notebook. If no prefix is specified, then pdepack-notebook will be used.''', default="pdepack")
 
 parser.add_argument('-u', "--user", nargs='?', help='''username & groupname name used in the image. The default is numgeom.''', default="numgeom")
 
+parser.add_argument('-i', '--image', nargs='?', help='''The Docker image to use The default is fenics-notebook.''', default="fenics-notebook")
+
+parser.add_argument('notebook', nargs='?', help='''The notebook to open.''', default="")
+
 args=parser.parse_args()
-prefix = args.prefix
+image = args.image
 user = args.user
+notebook = args.notebook
 
 def random_ports(port, n):
     """Generate a list of n random ports near the given port.
@@ -63,8 +67,9 @@ if __name__ == "__main__":
                          "-w", "/home/" + user + "/shared", 
                          "-v", pwd + ":/home/" + user + "/shared", 
                          "-p", port + ":" + port, 
-                         "quay.io/" user +"/" + prefix + "-notebook", 
-                         "jupyter-notebook --no-browser --ip=0.0.0.0 --port " + port], 
+                         "quay.io/" + user +"/" + image, 
+                         "jupyter-notebook --no-browser --ip=0.0.0.0 --port " + 
+                         port + " " + notebook], 
                         stderr=subprocess.PIPE, universal_newlines=True)
    
    try:

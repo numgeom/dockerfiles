@@ -12,11 +12,11 @@ It is extremely easy to use the prebuilt images. First, make sure that you have 
  ```
      curl -O https://github.com/numgeom/dockerfiles/raw/master/docker-notebook
 ```
-2. Run the `docker-notebook` command in the directory where you want to save your Notebook files. You can also specify which notebook Docker image to use. For example, the following command
+2. Run the `docker-notebook` command in the directory where you want to save your Notebook files. For example, to open a notebook named fenics-intro.ipynb, run the following command
 ```
-     docker-notebook fenics
+     docker-notebook -i fenics-notebook fenics-intro.ipynb
 ``` 
-   would download and run the fenics-notebook Docker image, launch Jupyter Notebook within the image, and open up Jupyter Notebook in your default web browser. You can replace `fenics` with `scipy`, `octave`, `odepack`, or `pdepack` to use their corresponding images.
+   would download and run the fenics-notebook Docker image, launch Jupyter Notebook within the image, and open up Jupyter Notebook in your default web browser. You can replace `fenics-notebook` with `scipy-notebook`, `octave-notebook`, `odepack-notebook`, or `pdepack-notebook` to use their corresponding images.
 
 ## Limitations
 

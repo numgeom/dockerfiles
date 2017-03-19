@@ -8,11 +8,12 @@ This Docker image is for Octave 4.0 with Jupyter Notebook. This images inherits 
 
 To install Docker for your platform (Windows, MacOS, Linux, cloud platforms, etc.), follow the instructions at [docker.com](https://docs.docker.com/engine/getstarted/step_one/).
 
-Once you have Docker installed, you can start Jupyter Notebook using the following command in the directory where you want to store your notebooks:
+Once you have Docker installed, you can start Jupyter Notebook using the following command in the directory that contains your notebook (e.g., octave-intro.ipynb):
 ```
-    docker-notebook octave
+    docker-notebook -i octave-notebook octave-intro.ipynb
 ```
-where the `docker-notebook` script can be downloaded at <https://github.com/numgeom/dockerfiles/raw/master/docker-notebook>.
+
+The `docker-notebook` script can be downloaded at <https://github.com/numgeom/dockerfiles/raw/master/docker-notebook>.
 
 ## Running Jupyter Notebook with Docker Toolbox
 
@@ -24,14 +25,12 @@ If your version of Windows does not support Docker, you may need to [install Doc
 ```
 
 If successful, you will see some screen out such as:
-"
 ```
 ...
 Copy/paste this URL into your browser when you connect for the first time,
 to login with a token:
 http://0.0.0.0:8088/?token=2634a8f67ed91c582929e1a1137b8b3b400385b35afab19e
 ```
-"
 
 Copy and paste the URL into a web browser (such as Google Chrome). If port `8088` is in use, you can change it to a different port (say `8099`) by replacing `8088` with `8099 in the` `docker run` command.
 
