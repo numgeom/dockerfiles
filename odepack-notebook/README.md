@@ -2,7 +2,7 @@
 
 This Docker image is for Octave with ODE package and Jupyter Notebook. This images inherits [numgeom/octave-notebook](https://quay.io/repository/numgeom/octave-notebook). 
 
-![Docker Repository on Quay](https://quay.io/repository/numgeom/odepack-notebook/status "Docker Repository on Quay")
+[![Docker Repository on Quay](https://quay.io/repository/numgeom/odepack-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/odepack-notebook)
 
 ## Running Jupyter Notebook
 

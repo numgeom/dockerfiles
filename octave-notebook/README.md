@@ -2,7 +2,7 @@
 
 This Docker image is for Octave 4.0 with Jupyter Notebook. This images inherits [numgeom/base](https://quay.io/repository/numgeom/base). 
 
-![Docker Repository on Quay](https://quay.io/repository/numgeom/octave-notebook/status "Docker Repository on Quay")
+[![Docker Repository on Quay](https://quay.io/repository/numgeom/octave-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/octave-notebook)
 
 ## Running Jupyter Notebook with Docker
 

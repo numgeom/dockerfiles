@@ -4,7 +4,7 @@ This Docker image is for FEniCS stable version with Jupyter Notebook. It contain
 
 This images inherits [fenics/stable](https://quay.io/repository/fenics/stable), which inherits fenicsproject's official [dev-env image](https://quay.io/repository/fenicsproject/dev-env). 
 
-![Docker Repository on Quay](https://quay.io/repository/numgeom/fenics-notebook/status "Docker Repository on Quay")
+[![Docker Repository on Quay](https://quay.io/repository/numgeom/fenics-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/fenics-notebook)
 
 ## Running Jupyter Notebook
 

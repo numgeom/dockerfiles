@@ -2,7 +2,7 @@
 
 This Docker image is for SciPy with Jupyter Notebook. This images inherits [numgeom/base](https://quay.io/repository/numgeom/base). 
 
-![Docker Repository on Quay](https://quay.io/repository/numgeom/scipy-notebook/status "Docker Repository on Quay")
+[![Docker Repository on Quay](https://quay.io/repository/numgeom/scipy-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/scipy-notebook)
 
 ## Running Jupyter Notebook
 
