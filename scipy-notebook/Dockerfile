@@ -13,7 +13,7 @@ LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 USER root
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y python3-scipy python3-sympy && \
+    apt-get install -y python3-scipy && \
     rm -rf /var/lib/apt/lists/*
 
 # Clean Up
