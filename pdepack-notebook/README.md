@@ -2,7 +2,7 @@
 
 This Docker image is for solving numerical PDEs using FEniCS in Jupyter Notebook. This images inherits [numgeom/base](https://quay.io/repository/numgeom/fenics-notebook).
 
-[![Docker Repository on Quay](https://quay.io/repository/numgeom/pdepack-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/pdfpack-notebook)
+[![Docker Repository on Quay](https://quay.io/repository/numgeom/pdepack-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/pdepack-notebook)
 
 ## Running Jupyter Notebook
 
