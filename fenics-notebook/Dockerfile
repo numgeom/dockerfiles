@@ -7,7 +7,7 @@
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM quay.io/fenics/stable:latest
+FROM quay.io/fenics/stable:py3
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root
