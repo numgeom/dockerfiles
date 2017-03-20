@@ -19,6 +19,7 @@ RUN apt-get update && \
 
 # Install pygmsh and meshpy
 RUN pip2 install -U \
+         lxml \
          pygmsh \
          meshpy
 
