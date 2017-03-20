@@ -36,6 +36,10 @@ RUN apt-get -y install \
     pip3 install -U pip && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install ipywidgets
+RUN pip3 install -U ipywidgets && \
+    jupyter nbextension install --py --system widgetsnbextension
+
 # Install latex_envs for Jupyter Notebook
 RUN pip3 install -U jupyter_latex_envs && \
     jupyter nbextension install --system --py latex_envs && \
