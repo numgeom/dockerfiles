@@ -1,4 +1,4 @@
-# Builds a Docker image for FEniCS with Python 3 and Jupyter Notebook,
+# Builds a Docker image for FEniCS with Python 2 and Jupyter Notebook,
 # with LaTeX environment and spell checker.
 #
 # It can be found at:
@@ -7,18 +7,18 @@
 # Authors:
 # Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
-FROM quay.io/fenics/stable:py3
+FROM quay.io/fenicsproject/stable
 LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root
 
 # Install jupyter and ipywidgets
-RUN pip3 install -U jupyter ipywidgets && \
+RUN pip2 install -U jupyter ipywidgets && \
     jupyter nbextension install --py --system widgetsnbextension && \
     jupyter nbextension enable --py --system widgetsnbextension
 
 # Install jupyter_latex_envs version 1.3.7.2 for Jupyter Notebook
-RUN pip3 install -U jupyter_latex_envs==1.3.7.2 && \
+RUN pip2 install -U jupyter_latex_envs==1.3.7.2 && \
     jupyter nbextension install --py --system latex_envs && \
     jupyter nbextension enable --py --system latex_envs
 

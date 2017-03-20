@@ -1,6 +1,6 @@
-## Docker Image for FEniCS stable with Jupyter Notebook and Py3.
+## Docker Image for FEniCS stable with Jupyter Notebook.
 
-This Docker image is for FEniCS stable version with Jupyter Notebook. It contains full-fledged and optimized versions of PETSc, SLEPc, petsc4py and slepc4py already compiled. FEniCS itself is built from the source code in the `git` repository, built with Python 3. 
+This Docker image is for FEniCS stable version with Jupyter Notebook. It contains full-fledged and optimized versions of PETSc, SLEPc, petsc4py and slepc4py already compiled. FEniCS itself is built from the source code in the `git` repository. 
 
 This images inherits [fenics/stable](https://quay.io/repository/fenics/stable), which inherits fenicsproject's official [dev-env image](https://quay.io/repository/fenicsproject/dev-env). 
 

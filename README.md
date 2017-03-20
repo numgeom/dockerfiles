@@ -1,6 +1,6 @@
 ## Docker Images for Jupyter Notebook
 
-This repository contains the Dockerfiles for building a few lightweight Docker images with Jupyter Notebook, including SciPy, Octave, ODE package (based on Octave and its symbolic and odepkg packages), FEniCS, and PDE package (based on FEniCS with additional mesh generation tools). All the images are built with Python 3, with some useful Jupyter Notebook extensions are preinstalled, including LaTeX environment and spell checker.
+This repository contains the Dockerfiles for building a few lightweight Docker images with Jupyter Notebook, including SciPy, Octave, ODE package (based on Octave and its symbolic and odepkg packages), FEniCS, and PDE package (based on FEniCS with additional mesh generation tools). All the images are bundled with some useful Jupyter Notebook extensions are preinstalled, including LaTeX environment and spell checker.
 
 These images are particularly useful for teaching, learning, and quick prototyping. The prebuilt images are available at <https://quay.io/organization/numgeom>.
 

@@ -11,23 +11,23 @@ LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root
 
-# Install gmsh
+# Install gmsh and python-vtk
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y gmsh && \
+    apt-get install -y gmsh python-vtk && \
     rm -rf /var/lib/apt/lists/*
 
 # Install pygmsh and meshpy
-RUN pip install -U \
+RUN pip2 install -U \
          pygmsh \
          meshpy
 
 # Install libcgal-dev and frentos
-#RUN apt-get update && \
-#    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-#    apt-get install -y libcgal-dev libeigen3-dev && \
-#    rm -rf /var/lib/apt/lists/* && \
-#    pip install -U frentos
+RUN apt-get update && \
+    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
+    apt-get install -y libcgal-dev libeigen3-dev && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip2 install -U frentos
 
 # Clean Up
 RUN rm -rf /tmp/* /var/tmp/*
