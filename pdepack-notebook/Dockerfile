@@ -11,6 +11,12 @@ LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root
 
+# Install gmsh
+RUN apt-get update && \
+    apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
+    apt-get install -y gmsh && \
+    rm -rf /var/lib/apt/lists/*
+
 # Install pygmsh and meshpy
 RUN pip install -U \
          pygmsh \
