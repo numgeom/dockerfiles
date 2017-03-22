@@ -33,7 +33,6 @@ ENV LC_ALL=C.UTF-8 \
 RUN apt-get -y install \
             python3 \
             python3-pip && \
-    pip3 install -U pip && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install jupyter and ipywidgets
