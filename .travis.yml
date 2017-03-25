@@ -3,5 +3,8 @@ services:
 
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
-  - docker build --tag fenics/base fenics_dockerfiles/dockerfiles/base && docker push fenics/base && docker build --tag fenics/dev-env fenics_dockerfiles/dockerfiles/dev-env && docker push fenics/dev-env && docker build --tag fenics/stable fenics_dockerfiles/dockerfiles/stable && docker push fenics/stable
+  - docker login -u "$QUAY_USERNAME" -p "$QUAY_USERPASS" quay.io
+  - docker build --tag fenics/base --tag quay.io/fenics/base fenics_dockerfiles/dockerfiles/base && docker push fenics/base && docker push quay.io/fenics/base || exit
+  - docker build --tag fenics/dev-env --tag quay.io/fenics/dev-env fenics_dockerfiles/dockerfiles/dev-env && docker push fenics/dev-env && docker push quay.io/fenics/dev-env
+  - docker build --tag fenics/stable --tag quay.io/fenics/stable fenics_dockerfiles/dockerfiles/stable && docker push fenics/stable && docker push quay.io/fenics/stable
   - docker images
