@@ -1,0 +1,7 @@
+services:
+  - docker
+
+script:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
+  - docker build --tag numgeom/notebook-base notebook-base && docker push numgeom/notebook-base
+  - docker images

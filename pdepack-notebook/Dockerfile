@@ -11,10 +11,14 @@ LABEL maintainer "Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>"
 
 USER root
 
-# Install gmsh and python-vtk
-RUN apt-get update && \
+# Install FreeCAD, Gmsh, and python-vtk
+RUN add-apt-repository ppa:freecad-maintainers/freecad-stable && \
+    apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y gmsh python-vtk && \
+    apt-get install -y --no-install-recommends \
+        freecad \
+        gmsh \
+        python-vtk && \
     rm -rf /var/lib/apt/lists/*
 
 # Install pygmsh and meshpy
@@ -26,7 +30,9 @@ RUN pip2 install -U \
 # Install libcgal-dev and frentos
 RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
-    apt-get install -y libcgal-dev libeigen3-dev && \
+    apt-get install -y --no-install-recommends \
+        libcgal-dev \
+        libeigen3-dev && \
     rm -rf /var/lib/apt/lists/* && \
     pip2 install -U frentos
 
