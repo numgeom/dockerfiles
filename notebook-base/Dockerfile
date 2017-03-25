@@ -82,8 +82,8 @@ ENV DOCKER_GROUP=$DOCKER_USER \
 # Add script to set up permissions of home directory on myinit
 # Run ldconfig so that /usr/local/lib is in the default search
 # path for the dynamic linker.
-RUN ln -s -f /usr/share/zoneinfo/America/New_York /etc/localtime && \
-    echo "America/New_York" > /etc/timezone && \
+RUN echo "America/New_York" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata && \
     useradd -m -s /bin/bash -G sudo,docker_env $DOCKER_USER && \
     echo "$DOCKER_USER:docker" | chpasswd && \
     echo "$DOCKER_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
