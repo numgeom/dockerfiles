@@ -12,10 +12,13 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 USER root
 WORKDIR /tmp
 
+# Change the default timezone to America/New_York
 # Install jupyter and ipywidgets
 # Install jupyter_latex_envs version 1.3.7.2 for Jupyter Notebook
 # Install spell checker for Jupyter Notebook
-RUN pip3 install -U \
+RUN echo "America/New_York" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    pip3 install -U \
          jupyter \
          ipywidgets && \
     jupyter nbextension install --py --system \

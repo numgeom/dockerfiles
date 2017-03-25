@@ -1,12 +1,8 @@
-# Builds a base Docker image that all other NumGeom images are
-# built off of (FROM). In this image we control the end user
-# experience, namely; creating the user numgeom, setting up the users
-# environment and the default entry point and cmds.
+# Builds a base Docker image. This is a template for reference of 
+# other NumGeom build images. This image is not used directly by 
+# end-users. The analysis of its image can be found at:
 #
-# Although this image is not used directly by end-users, it can be
-# found at:
-#
-#   https://hub.docker.com/r/numgeom/notebook-base
+#   https://quay.io/repository/numgeom/notebook-base
 #
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
