@@ -4,9 +4,9 @@ services:
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
   - docker login -u "$QUAY_USERNAME" -p "$QUAY_USERPASS" quay.io
-  - docker build --tag fenics/base --tag quay.io/fenics/base fenics_dockerfiles/dockerfiles/base && docker push fenics/base && docker push quay.io/fenics/base
-  - docker build --tag fenics/dev-env --tag quay.io/fenics/dev-env fenics_dockerfiles/dockerfiles/dev-env && docker push fenics/dev-env && docker push quay.io/fenics/dev-env
-  - docker build --tag fenics/stable --tag quay.io/fenics/stable fenics_dockerfiles/dockerfiles/stable && docker push fenics/stable && docker push quay.io/fenics/stable
+  - docker build --tag fenics/base --tag quay.io/fenics/base fenics_dockerfiles/dockerfiles/base && docker push fenics/base && docker push quay.io/fenics/base || exit $?
+  - docker build --tag fenics/dev-env --tag quay.io/fenics/dev-env fenics_dockerfiles/dockerfiles/dev-env && docker push fenics/dev-env && docker push quay.io/fenics/dev-env || exit $?
   - docker build --tag fenics/dev --tag quay.io/fenics/dev fenics_dockerfiles/dockerfiles/dev && docker push fenics/dev && docker push quay.io/fenics/dev
+  - docker build --tag fenics/stable --tag quay.io/fenics/stable fenics_dockerfiles/dockerfiles/stable && docker push fenics/stable && docker push quay.io/fenics/stable || exit $?
   - docker build --tag numgeom/fenics-notebook --tag quay.io/numgeom/fenics-notebook fenics-notebook && docker push numgeom/fenics-notebook && docker push quay.io/numgeom/fenics-notebook
   - docker images
