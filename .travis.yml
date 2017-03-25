@@ -4,4 +4,6 @@ services:
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
   - docker build --tag numgeom/notebook-base notebook-base && docker push numgeom/notebook-base
+  - docker build --tag fenics/base fenics_dockerfiles/dockerfiles/base && docker push fenics/base
+  - docker build --tag fenics/dev-env fenics_dockerfiles/dockerfiles/dev-env && docker push fenics/dev-env
   - docker images

@@ -6,7 +6,7 @@
 # Although this image is not used directly by end-users, it can be
 # found at:
 #
-#   https://hub.docker.com/r/numgeom/base
+#   https://hub.docker.com/r/numgeom/notebook-base
 #
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
