@@ -14,7 +14,7 @@
 FROM phusion/baseimage:0.9.20
 LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 
-# Get Ubuntu updates, pip, etc.
+# Get Ubuntu updates, jupyter, etc.
 # Install jupyter, ipywidgets 
 # jupyter_latex_envs version 1.3.7.2 for Jupyter Notebook
 # Install spell checker for Jupyter Notebook
@@ -32,7 +32,7 @@ RUN apt-get update && \
             ttf-dejavu && \
     echo "C.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen && \
-    pip3 install -U 
+    pip3 install -U \
          pip \
          setuptools && \
     pip3 install -U \
