@@ -1,6 +1,0 @@
-# PDE package with FEniCS, mesh generators and Jupyter Notebook.
-
-Welcome to Docker Image for PDEPack with FEniCS and Jupyter Notebook!
-
-To use Jupyter Notebook, see the instruction at
-https://github.com/numgeom/dockerfiles/blob/master/odepack-notebook/README.md

@@ -1,6 +1,6 @@
 [submodule "fenics_dockerfiles"]
 	path = fenics_dockerfiles
-	url = https://xmjiao@bitbucket.org/xmjiao/fenics_dockerfiles.git
+	url = https://bitbucket.org/xmjiao/fenics_dockerfiles.git
 [submodule "desktop-base"]
 	path = desktop-base
 	url = https://github.com/xmjiao/desktop-base.git
