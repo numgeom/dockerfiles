@@ -68,7 +68,7 @@ RUN add-apt-repository ppa:freecad-maintainers/freecad-stable && \
         websocket-client==0.21.0 \
         wsgiref==0.1.2 && \
     apt-get autoclean && \
-    pt-get autoremove && \
+    apt-get autoremove && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD image /
