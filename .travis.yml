@@ -3,6 +3,5 @@ services:
 
 script:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_USERPASS"
-  - docker build --tag numgeom/fenics-notebook fenics-notebook && docker push numgeom/fenics-notebook && \
-    docker build --tag numgeom/pdepack-desktop pdepack-desktop && docker push numgeom/pdepack-desktop
+  - docker build --tag numgeom/fenics-notebook fenics-notebook && docker push numgeom/fenics-notebook && docker build --tag numgeom/pdepack-desktop pdepack-desktop && docker push numgeom/pdepack-desktop
   - docker images
