@@ -2,7 +2,7 @@
 
 This Docker image is for FEniCS stable version with Jupyter Notebook. It contains full-fledged and optimized versions of PETSc, SLEPc, petsc4py and slepc4py already compiled. FEniCS itself is built from the source code in the `git` repository. 
 
-[![Docker Repository on Quay](https://quay.io/repository/numgeom/fenics-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/fenics-notebook)
+[![Build Status](https://travis-ci.org/numgeom/dockerfiles.svg?branch=master)](https://travis-ci.org/numgeom/dockerfiles)    [![Docker Repository on Quay](https://quay.io/repository/numgeom/fenics-notebook/status "Docker Repository on Quay")](https://quay.io/repository/numgeom/fenics-notebook)
 
 ## Running Jupyter Notebook
 

@@ -86,11 +86,6 @@ ADD conf/lxde $DOCKER_HOME/.config
 
 RUN chown -R $DOCKER_USER:$DOCKER_GROUP $DOCKER_HOME
 
-
-
-
-
-
 WORKDIR $DOCKER_HOME
 
 ENTRYPOINT ["/sbin/my_init", "--quiet", "--", "/usr/bin/supervisord", "-n"]
