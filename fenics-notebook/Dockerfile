@@ -26,7 +26,7 @@ RUN echo "America/New_York" > /etc/timezone && \
     jupyter nbextension enable --py --system \
             widgetsnbextension && \
     pip3 install -U \
-         jupyter_latex_envs==1.3.7.2 && \
+         https://github.com/jfbercher/jupyter_latex_envs/archive/master.zip && \
     jupyter nbextension install --py --system \
             latex_envs && \
     jupyter nbextension enable --py --system \
