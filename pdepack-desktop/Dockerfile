@@ -46,8 +46,8 @@ RUN add-apt-repository ppa:freecad-maintainers/freecad-stable && \
 	xpdf \
 	\
 	freecad \
-        gmsh \
-        python-vtk && \
+        cxx \
+        gmsh && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     sed -i 's/MOZ_APP_NAME "\$@"/MOZ_APP_NAME --no-remote "\$@"/' /usr/bin/firefox && \
     pip2 install -U pip \
