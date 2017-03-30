@@ -1,21 +1,22 @@
 # Builds a Docker image for PDE solving with a Desktop environment
 # and Jupyter Notebook and LXDE.
 #
-# It can be found at:
+# The built image can be found at:
 #   https://hub.docker.com/r/numgeom/pdepack-desktop
 #
 # Authors:
 # Xiangmin Jiao <xmjiao@gmail.com>
 
-# VNC support is based on https://github.com/fcwu/docker-ubuntu-vnc-desktop
+# VNC support is based on https://github.com/x11vnc/docker-ubuntu-x11vnc
 
 FROM numgeom/fenics-notebook
 LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 
 USER root
+WORKDIR /tmp
 
-# Install required systems tools
-# Install additional Python libraries
+# Install some required system tools and packages for X Windows
+# We install firefox and make --no-remote to be default
 # Install FreeCAD, Gmsh, and python-vtk
 
 
@@ -24,66 +25,53 @@ RUN add-apt-repository ppa:freecad-maintainers/freecad-stable && \
     apt-get upgrade -y -o Dpkg::Options::="--force-confold" && \
     apt-get install -y --no-install-recommends \
         openssh-server \
-        supervisor \
-        pwgen \
         net-tools \
-        nginx \
         python-pip \
         python-dev \
-        lxde lxsession-logout \
+        g++ \
+        \
+        xserver-xorg-video-dummy \
+        lxde \
+        x11-xserver-utils \
         gnome-themes-standard \
         gtk2-engines-pixbuf \
         gtk2-engines-murrine \
         ttf-ubuntu-font-family \
-        xvfb \
+        xfonts-base xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic \
         mesa-utils \
         libgl1-mesa-dri \
         x11vnc \
-        midori \
+        \
+        firefox \
 	xpdf \
 	\
 	freecad \
         gmsh \
         python-vtk && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    sed -i 's/MOZ_APP_NAME "\$@"/MOZ_APP_NAME --no-remote "\$@"/' /usr/bin/firefox && \
     pip2 install -U pip \
-        setuptools \
-        wheel && \
+        setuptools && \
 	\
-    pip2 install -U \
-        Flask==0.10.1 \
-        Flask-Login==0.2.11 \
-        Jinja2==2.7.3 \
-        MarkupSafe==0.23 \
-        Werkzeug==0.9.6 \
-        argparse==1.2.1 \
-        backports.ssl-match-hostname==3.4.0.2 \
-        docker-py==0.5.3 \
-        gevent==1.0.1 \
-        gevent-websocket==0.9.3 \
-        greenlet==0.4.5 \
-        itsdangerous==0.24 \
-        peewee==2.4.1 \
-        requests==2.4.3 \
-        six==1.8.0 \
-        websocket-client==0.21.0 \
-        wsgiref==0.1.2 && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-ADD image /
-
-EXPOSE 80
-EXPOSE 5900
+    pip2 install -U https://github.com/novnc/websockify/archive/master.tar.gz && \
+    mkdir /usr/local/noVNC && \
+    curl -s -L https://github.com/novnc/noVNC/archive/stable/v0.6.tar.gz | \
+         tar zx -C /usr/local/noVNC --strip-components 1 && \
+    rm -rf /tmp/* /var/tmp/*
 
 ########################################################
 # Customization for user and location
 ########################################################
 
-COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
-COPY conf/nginx.conf /etc/nginx/sites-enabled/default
-ADD conf/lxde $DOCKER_HOME/.config
+ADD image /
+ADD conf/ $DOCKER_HOME/.config
 
-RUN chown -R $DOCKER_USER:$DOCKER_GROUP $DOCKER_HOME
+RUN sed -i "s/numgeom/$DOCKER_USER/" $DOCKER_HOME/.config/pcmanfm/LXDE/desktop-items-0.conf && \
+    mkdir $DOCKER_HOME/.vnc && \
+    mkdir $DOCKER_HOME/.log && \
+    chown -R $DOCKER_USER:$DOCKER_GROUP $DOCKER_HOME
 
 WORKDIR $DOCKER_HOME
-
-ENTRYPOINT ["/sbin/my_init", "--quiet", "--", "/usr/bin/supervisord", "-n"]
+USER root
+ENTRYPOINT ["/sbin/my_init","--quiet","--","/sbin/setuser","numgeom","/bin/bash","-l","-c"]
+CMD ["/bin/bash","-i"]

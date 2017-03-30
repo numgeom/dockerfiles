@@ -12,13 +12,10 @@ LABEL maintainer "Xiangmin Jiao <xmjiao@gmail.com>"
 USER root
 WORKDIR /tmp
 
-# Change the default timezone to America/New_York
 # Install jupyter and ipywidgets
 # Install jupyter_latex_envs version 1.3.7.2 for Jupyter Notebook
 # Install spell checker for Jupyter Notebook
-RUN echo "America/New_York" > /etc/timezone && \
-    dpkg-reconfigure -f noninteractive tzdata && \
-    pip3 install -U \
+RUN pip3 install -U \
          jupyter \
          ipywidgets && \
     jupyter nbextension install --py --system \
@@ -41,4 +38,31 @@ RUN echo "America/New_York" > /etc/timezone && \
             calico-spell-check && \
     rm -rf /tmp/* /var/tmp/*
 
+ENV DOCKER_USER=numgeom
+ENV DOCKER_GROUP=$DOCKER_USER \
+    DOCKER_HOME=/home/$DOCKER_USER \
+    HOME=/home/$DOCKER_USER
+
+# Change the default timezone to America/New_York
+# Set up user so that we do not run as root
+# See https://github.com/phusion/baseimage-docker/issues/186
+# Disable forward logging
+# Add script to set up permissions of home directory on myinit
+# Run ldconfig so that /usr/local/lib is in the default search
+# path for the dynamic linker.
+RUN echo "America/New_York" > /etc/timezone && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    useradd -m -s /bin/bash -G sudo,docker_env $DOCKER_USER && \
+    echo "$DOCKER_USER:docker" | chpasswd && \
+    echo "$DOCKER_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    ldconfig && \
+    touch $DOCKER_HOME/.sudo_as_admin_successful && \
+    mkdir $DOCKER_HOME/shared && \
+    chown -R $DOCKER_USER:$DOCKER_GROUP $DOCKER_HOME
+
+VOLUME $DOCKER_HOME/shared
 WORKDIR $DOCKER_HOME
+
+USER root
+ENTRYPOINT ["/sbin/my_init","--quiet","--","/sbin/setuser","numgeom","/bin/bash","-l","-c"]
+CMD ["/bin/bash","-l","-i"]

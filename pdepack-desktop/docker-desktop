@@ -1,27 +1,36 @@
 #!/usr/bin/env python
 
 """
-Launch Jupyter Notebook within a NumGeom notebook image within docker and 
-automatically open up the URL within the default web browser.
+Launch a Docker image with Ubuntu and LXDE window manager, and
+automatically open up the URL in the default web browser.
 """
+
+# Author: Xiangmin Jiao <xiangmin.jiao@stonybrook.edu>
 
 from __future__ import print_function # Only Python 2.x
 
 import argparse
+import sys
 
-# Process input arguments
+# Process command-line arguments
 parser = argparse.ArgumentParser(description=__doc__)
 
-parser.add_argument('-u', "--user", nargs='?', help='''username & groupname name used in the image. The default is numgeom.''', default="numgeom")
+parser.add_argument('-u', "--user", nargs='?', help='''username used by the image. The default is numgeom.''', default="numgeom")
 
-parser.add_argument('-i', '--image', nargs='?', help='''The Docker image to use The default is desktop-base.''', default="desktop-base")
+parser.add_argument('-i', '--image', nargs='?', help='''The Docker image to use The default is pdepack-desktop.''', default="pdepack-desktop")
+
+parser.add_argument('-p', '--pull', help='''Pull the latest Docker image from the server. The default is not to pull.''', dest='pull', action='store_true')
+
+parser.set_defaults(pull=False)
+
 
 parser.add_argument('notebook', nargs='?', help='''The notebook to open.''', default="")
 
-args=parser.parse_args()
+args = parser.parse_args()
 image = args.image
 user = args.user
 notebook = args.notebook
+pull = args.pull
 
 def random_ports(port, n):
     """Generate a list of n random ports near the given port.
@@ -36,60 +45,107 @@ def random_ports(port, n):
     for i in range(n-5):
         yield max(1, port + random.randint(-2*n, 2*n))
 
+def id_generator(size=6):
+   """Generate a container ID"""
+   import random
+   import string
+
+   chars=string.ascii_uppercase + string.digits
+   return "desktop_" + (''.join(random.choice(chars) for _ in range(size)))
+
 def find_free_port(port, retries):
    "Find a free port"
-   import sys
    import socket
 
    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
    for port in random_ports(port, retries+1):
-      result = sock.connect_ex(('127.0.0.1', port))
-      if result:
-         return port
+       try:
+           sock.bind(("127.0.0.1", port))
+           sock.close()
+           return port
+       except socket.error as e:
+           continue
 
-   print("Error: Could not find a free port")
+   print("Error: Could not find a free port.")
    sys.exit(-1)
+
+def wait_net_service(port, timeout=30):
+    """ Wait for network service to appear.
+    """
+    import socket
+    import time
+
+    for i in range(timeout):
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect(("127.0.0.1", port))
+        except socket.error as err:
+            sock.close()
+            time.sleep(1)
+            continue
+        else:
+            sock.close()
+            time.sleep(3)
+            return True
+
+def get_screen_resolution():
+    """Obtain the local screen resolution."""
+
+    if sys.version_info.major > 2:
+        import tkinter as tk
+    else:
+        import Tkinter as tk
+
+    root = tk.Tk()
+    root.withdraw()
+    width, height = root.winfo_screenwidth(), root.winfo_screenheight()
+
+    return str(width) + 'x' + str(height)
 
 if __name__ == "__main__":
    import os
    import subprocess
-   import sys
    import webbrowser
 
    pwd = os.getcwd()
 
-   # Find an unused port
+   if pull:
+       subprocess.call(["docker", "pull", user +"/" + image])
+       print('Updated Docker image. Run "docker system prune" to delete all unused old containers and images.')
+
+   # Generate a container ID and find an unused port
+   container = id_generator()
    port = str(find_free_port(6080, 50))
 
+   print("Starting up docker image...")
    # Start the docker image and pipe the stderr
-   p = subprocess.Popen(["docker", "run", "--rm", 
+   p = subprocess.Popen(["docker", "run", "--rm", "--name", container,
                          "-w", "/home/" + user + "/shared", 
                          "-v", pwd + ":/home/" + user + "/shared", 
-                         "-p", "127.0.0.1:" + port + ":80", 
-                         user +"/" + image], 
+                         "-p", "127.0.0.1:" + port + ":6080",
+                         user + "/" + image,
+                         "startvnc.sh", get_screen_resolution()], 
                          stdout=subprocess.PIPE, universal_newlines=True)
    
+   # Wait for user to press Ctrl-C
    try:
-      opened = False
       # Monitor the stdout to extract the URL
       for stdout_line in iter(p.stdout.readline, ""):
-         sys.stdout.write(stdout_line)
-
-         ind = stdout_line.find("novnc entered RUNNING state")
-         if not opened and ind >= 0:
+         ind = stdout_line.find("http://localhost:")
+         if ind >= 0:
             # Open browser if found URL
-            webbrowser.open("http://localhost:" + port)
+            url = stdout_line.replace(":6080", ':' + port)
+            sys.stdout.write(url)
 
-            opened = True
+            wait_net_service(int(port))
+            webbrowser.open(url[ind:-1])
+         else:
+            sys.stdout.write(stdout_line)
 
       p.stdout.close()
       p.wait()
    except KeyboardInterrupt:
-      # Terminate docker if user pressed Ctrl-C
-      try:
-         p.terminate()
-         os.remove(f.name)
-      except OSError:
-         pass
-      p.wait()
+       print('*** Stopping the server.')
+   except OSError:
+       pass
