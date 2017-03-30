@@ -46,7 +46,7 @@ RUN add-apt-repository ppa:freecad-maintainers/freecad-stable && \
 	xpdf \
 	\
 	freecad \
-        ccx \
+        calculix-ccx \
         gmsh && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     sed -i 's/MOZ_APP_NAME "\$@"/MOZ_APP_NAME --no-remote "\$@"/' /usr/bin/firefox && \
